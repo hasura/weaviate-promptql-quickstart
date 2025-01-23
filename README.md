@@ -37,7 +37,7 @@ This will create a movie collection and load sample movie data with vector embed
 
 ## Write custom functions
 
-In `mysupergraph/app/connector/mypython/functions.py`, add additional functions based on requirements.
+In `app/connector/python/functions.py`, add additional functions based on requirements.
 
 We already have two functions.
 
