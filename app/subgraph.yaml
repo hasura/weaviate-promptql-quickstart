@@ -1,0 +1,19 @@
+kind: Subgraph
+version: v2
+definition:
+  name: app
+  generator:
+    rootPath: .
+    namingConvention: none
+  includePaths:
+    - metadata
+  envMapping:
+    APP_PYTHON_AUTHORIZATION_HEADER:
+      fromEnv: APP_PYTHON_AUTHORIZATION_HEADER
+    APP_PYTHON_READ_URL:
+      fromEnv: APP_PYTHON_READ_URL
+    APP_PYTHON_WRITE_URL:
+      fromEnv: APP_PYTHON_WRITE_URL
+  connectors:
+    - path: connector/python/connector.yaml
+      connectorLinkName: python

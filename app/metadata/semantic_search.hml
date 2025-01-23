@@ -1,0 +1,52 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: semantic_search
+  fields:
+    - name: title
+      type: String!
+  graphql:
+    typeName: semantic_search
+    inputTypeName: semantic_search_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: python
+      dataConnectorObjectType: semantic_search
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: semantic_search
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - title
+
+---
+kind: Command
+version: v1
+definition:
+  name: semantic_search
+  outputType: "[semantic_search!]!"
+  arguments:
+    - name: query
+      type: String!
+  source:
+    dataConnectorName: python
+    dataConnectorCommand:
+      function: semantic_search
+  graphql:
+    rootFieldName: semantic_search
+    rootFieldKind: Query
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: semantic_search
+  permissions:
+    - role: admin
+      allowExecution: true
+

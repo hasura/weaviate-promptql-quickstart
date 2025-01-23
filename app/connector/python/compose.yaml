@@ -1,0 +1,16 @@
+services:
+  app_python:
+    build:
+      context: .
+      dockerfile: .hasura-connector/Dockerfile
+    environment:
+      HASURA_SERVICE_TOKEN_SECRET: $APP_PYTHON_HASURA_SERVICE_TOKEN_SECRET
+      OTEL_EXPORTER_OTLP_ENDPOINT: $APP_PYTHON_OTEL_EXPORTER_OTLP_ENDPOINT
+      OTEL_SERVICE_NAME: $APP_PYTHON_OTEL_SERVICE_NAME
+      COHERE_API_KEY: $APP_PYTHON_COHERE_API_KEY
+      WCD_URL: $APP_PYTHON_WCD_URL
+      WCD_API_KEY: $APP_PYTHON_WCD_API_KEY
+    extra_hosts:
+      - local.hasura.dev:host-gateway
+    ports:
+      - 5794:8080

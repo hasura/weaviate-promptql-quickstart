@@ -1,0 +1,94 @@
+kind: DataConnectorLink
+version: v1
+definition:
+  name: python
+  url:
+    readWriteUrls:
+      read:
+        valueFromEnv: APP_PYTHON_READ_URL
+      write:
+        valueFromEnv: APP_PYTHON_WRITE_URL
+  headers:
+    Authorization:
+      valueFromEnv: APP_PYTHON_AUTHORIZATION_HEADER
+  schema:
+    version: v0.1
+    schema:
+      scalar_types:
+        Boolean:
+          representation:
+            type: boolean
+          aggregate_functions: {}
+          comparison_operators: {}
+        Float:
+          representation:
+            type: float64
+          aggregate_functions: {}
+          comparison_operators: {}
+        HeaderMap:
+          representation:
+            type: json
+          aggregate_functions: {}
+          comparison_operators: {}
+        Int:
+          representation:
+            type: integer
+          aggregate_functions: {}
+          comparison_operators: {}
+        Json:
+          representation:
+            type: json
+          aggregate_functions: {}
+          comparison_operators: {}
+        String:
+          representation:
+            type: string
+          aggregate_functions: {}
+          comparison_operators: {}
+      object_types:
+        keyword_search:
+          fields:
+            title:
+              type:
+                type: named
+                name: String
+        semantic_search:
+          fields:
+            title:
+              type:
+                type: named
+                name: String
+      collections: []
+      functions:
+        - name: semantic_search
+          arguments:
+            query:
+              type:
+                type: named
+                name: String
+          result_type:
+            type: array
+            element_type:
+              type: named
+              name: semantic_search
+        - name: keyword_search
+          arguments:
+            query:
+              type:
+                type: named
+                name: String
+          result_type:
+            type: array
+            element_type:
+              type: named
+              name: keyword_search
+      procedures: []
+    capabilities:
+      version: 0.1.6
+      capabilities:
+        query:
+          aggregates: {}
+          variables: {}
+          explain: {}
+        mutation:
+          transactional: {}

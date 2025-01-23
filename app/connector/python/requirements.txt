@@ -1,0 +1,5 @@
+hasura-ndc==0.38
+pandas==2.2.3
+requests
+tqdm==4.67.1
+weaviate-client==4.10.4

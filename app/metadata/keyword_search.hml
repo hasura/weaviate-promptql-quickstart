@@ -1,0 +1,52 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: keyword_search
+  fields:
+    - name: title
+      type: String!
+  graphql:
+    typeName: keyword_search
+    inputTypeName: keyword_search_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: python
+      dataConnectorObjectType: keyword_search
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: keyword_search
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - title
+
+---
+kind: Command
+version: v1
+definition:
+  name: keyword_search
+  outputType: "[keyword_search!]!"
+  arguments:
+    - name: query
+      type: String!
+  source:
+    dataConnectorName: python
+    dataConnectorCommand:
+      function: keyword_search
+  graphql:
+    rootFieldName: keyword_search
+    rootFieldKind: Query
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: keyword_search
+  permissions:
+    - role: admin
+      allowExecution: true
+
